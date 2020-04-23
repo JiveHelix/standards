@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# The way pylint inspects the wx module generates several deprecation warnings
+# that confuse the output. The warning messages are sent to stderr, and the
+# messages we actually care about are only on stdout.
+
+if [[ $# -eq 0 ]]
+then
+    # No arguments provided.
+    # Run pylint over all python files in the current directory.
+    pylint *.py 2>/dev/null
+else
+    # One or more arguments were provided.
+    # Forward them to pylint
+    pylint $@ 2>/dev/null
+fi
